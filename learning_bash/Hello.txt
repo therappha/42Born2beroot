@@ -1,3 +1,0 @@
-Good day! 42
-Hello, World
-Hello, 42!
