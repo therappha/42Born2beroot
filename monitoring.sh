@@ -25,9 +25,9 @@ wall "
 #vCPUS: $V_CPU
 #Memory Usage: ${USED_RAM}mb/${TOTAL_RAM}mb ($PERCENT_RAM% in use)
 #Disk Usage: TODO
+#Cpu Rate %: TODO
 #Last Boot: $LAST_BOOT
 #LVM: $LVM_USE
 #Active Conections: $CONNECTIONS
 #IPV4/MAC: $IP ($MAC)
-Total sudos: $SUDOS
-"
+Total sudos: $SUDOS"
