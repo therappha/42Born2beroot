@@ -6,8 +6,11 @@ V_CPU=$(grep "processor" /proc/cpuinfo | wc -l)
 TOTAL_RAM=$(free --mega | grep Mem | awk  '{print $2}')
 USED_RAM=$(free --mega | grep Mem | awk  '{print $3}')
 PERCENT_RAM=$(echo "scale=2; $USED_RAM * 100 / $TOTAL_RAM" | bc)
-#DISKUSAGE
-#CPU RATE
+TOTAL_DISK=$(df -h --block-size=G --total | tail -1 | awk '{print $2}')
+USED_DISK=$(df -h --block-size=G --total | tail -1 | awk '{print $3}')
+PERC_DISK=$(df -h --block-size=G --total | tail -1 | awk '{print $5}')
+
+CPU_LOAD=$(mpstat | awk '{load= 100-$13;}END {print load}')
 LAST_BOOT=$(who -b | awk '{print $3 " " $4}')
 
 if [ $(lsblk | grep "lvm" | wc -l) = 0 ]; then
@@ -24,10 +27,10 @@ wall "
 #Physical CPU's: $PHY_CPU
 #vCPUS: $V_CPU
 #Memory Usage: ${USED_RAM}mb/${TOTAL_RAM}mb ($PERCENT_RAM% in use)
-#Disk Usage: TODO
-#Cpu Rate %: TODO
+#Disk Usage: ${USED_DISK}/${TOTAL_DISK} (${PERC_DISK})
+#Cpu Load: ${CPU_LOAD}%
 #Last Boot: $LAST_BOOT
 #LVM: $LVM_USE
 #Active Conections: $CONNECTIONS
 #IPV4/MAC: $IP ($MAC)
-Total sudos: $SUDOS"
+#Total sudos: $SUDOS"
